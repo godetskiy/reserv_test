@@ -7,6 +7,14 @@ a.btn:visited {
   color: #ffffff;
 }
 
+a.btn {
+  color: #3071a9;
+  &:hover {
+    background-color: #ffffff;
+  }
+}
+
+
 a.link:hover {
   background-color: #ffffff;
 }
