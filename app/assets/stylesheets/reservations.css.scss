@@ -24,6 +24,9 @@ a.link:hover {
     width: 100px;
   }
   &.datetime_container {
-    width: 300px;
+    .form-control {
+      display: inline-block;
+      width: auto;
+    }
   }
 }
