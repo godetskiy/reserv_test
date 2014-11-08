@@ -1,6 +1,6 @@
 <h1>Listing reservations</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Start time</th>
@@ -16,9 +16,9 @@
         <td><%= reservation.start_time %></td>
         <td><%= reservation.end_time %></td>
         <td><%= reservation.table %></td>
-        <td><%= link_to 'Show', reservation %></td>
-        <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
-        <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', reservation, class: 'link' %></td>
+        <td><%= link_to 'Edit', edit_reservation_path(reservation), class: 'link' %></td>
+        <td><%= link_to 'Destroy', reservation, class: 'link', method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Reservation', new_reservation_path %>
+<%= link_to 'New Reservation', new_reservation_path, class: "btn btn-primary" %>
