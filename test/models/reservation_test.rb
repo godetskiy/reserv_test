@@ -2,8 +2,8 @@ require 'test_helper'
 
 def test_invalid(timestamp, diff, message)
   new_reservation = Reservation.create(start_time: timestamp,
-                                    end_time: timestamp + diff,
-                                    table: 1)
+                                       end_time: timestamp + diff,
+                                       table: 1)
   assert new_reservation.invalid?, message
 end
 

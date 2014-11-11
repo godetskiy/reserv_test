@@ -3,17 +3,19 @@ class Reservation < ActiveRecord::Base
 
   validate :double_reservation?, on: [:create, :update]
 
-  def overlaps?(reserv)
-    (start_time - reserv.end_time) * (reserv.start_time - end_time) >= 0
-  end
+  scope :overlap, lambda { |new_reservation|
+    where(table: new_reservation.table)
+      .where.not(id: new_reservation.id)
+      .where('(start_time <= ?) AND (? <= end_time)',
+             new_reservation.end_time,
+             new_reservation.start_time)
+  }
 
   private
 
   def double_reservation?
-    Reservation.where(table: self.table).where.not(id: self.id).each do |reserv|
-      if reserv.overlaps?(self)
-        errors.add(:date, 'Sorry, this table is already reserved at this time')
-      end
-    end
+    res = Reservation.overlap(self).empty?
+    errors.add(:date,
+               'Sorry, this table is already reserved at this time') unless res
   end
 end
